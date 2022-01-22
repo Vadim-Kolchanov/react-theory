@@ -1,5 +1,13 @@
 import React from "react";
 
+export default () => (
+    <div>
+        <p>This is car component</p>
+        <p>Number: <strong>{Math.round(Math.random() * 100)}</strong></p>
+    </div>
+)
+
+// Способы создания компонента
 // function car() {
 //     return (
 //         <div>This is car component</div>
@@ -22,10 +30,3 @@ import React from "react";
 // );
 
 // export default car;
-
-export default () => (
-    <div>
-        This is car component
-        <strong>test</strong>
-    </div>
-)

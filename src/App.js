@@ -14,6 +14,7 @@ class App extends Component {
                 <h1>Hello World, motherfuckers!</h1>
 
                 <Car />
+                <Car />
             </div>
         );
     }
