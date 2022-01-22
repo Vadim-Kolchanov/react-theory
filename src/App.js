@@ -1,5 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
+import Car from './Car/Car';
 
 class App extends Component {
     render() {
@@ -10,7 +11,9 @@ class App extends Component {
 
         return (
             <div className="App" style={divStyle}>
-                <h1 style={{color: 'blue', fontSize: '20px'}}>Hello World, motherfuckers!</h1>
+                <h1>Hello World, motherfuckers!</h1>
+
+                <Car />
             </div>
         );
     }
