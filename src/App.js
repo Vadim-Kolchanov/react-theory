@@ -13,9 +13,9 @@ class App extends Component {
         pageTitle: 'Hello World, motherfuckers!'
     };
 
-    changeTitleHandler = () => {
-        console.log('click');
-    };
+    changeTitleHandler = () => this.setState({
+        pageTitle: `${(this.state.pageTitle)} (changed)`
+    });
 
     render() {
         const divStyle = {
