@@ -29,8 +29,6 @@ class App extends Component {
             textAlign: 'center'
         };
 
-        const cars = this.state.cars;
-
         return (
             <div className="App" style={divStyle}>
                 <h1>{this.state.pageTitle}</h1>
@@ -42,26 +40,34 @@ class App extends Component {
                 >Change title
                 </button>
 
-                <Car
-                    name={cars[0].name}
-                    year={cars[0].year}
-                    // Рекомендуется использовать bind, потому что он более производительный, чем стрелочная функция.
-                    // Т.к при каждом render "() =>" будет формировать новую функцию
-                    onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)}
-                />
-                <Car
-                    name={cars[1].name}
-                    year={cars[1].year}
-                    onChangeTitle={() => this.changeTitleHandler(cars[1].name)}
-                />
-                <Car
-                    name={cars[2].name}
-                    year={cars[2].year}
-                    onChangeTitle={() => this.changeTitleHandler(cars[2].name)}
-                />
+                { this.state.cars.map((car, index) => {
+                    return (
+                        <Car
+                            key={index}
+                            name={car.name}
+                            year={car.year}
+                            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                        />
+                    )
+                }) }
             </div>
         );
     }
 }
 
 export default App;
+
+/*
+<Car
+    name={cars[0].name}
+    year={cars[0].year}
+    // Рекомендуется использовать bind, потому что он более производительный, чем стрелочная функция.
+    // Т.к при каждом render "() =>" будет формировать новую функцию
+    onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)}
+/>
+<Car
+    name={cars[1].name}
+    year={cars[1].year}
+    onChangeTitle={() => this.changeTitleHandler(cars[1].name)}
+/>
+ */
