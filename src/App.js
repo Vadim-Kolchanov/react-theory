@@ -17,6 +17,12 @@ class App extends Component {
         pageTitle: title
     });
 
+    handleInput = (event) => {
+        this.setState({
+            pageTitle: event.target.value
+        });
+    };
+
     render() {
         const divStyle = {
             // 'text-align' не предпочтительно использовать. Лучше в стиле верблюда textAlign
@@ -29,9 +35,12 @@ class App extends Component {
             <div className="App" style={divStyle}>
                 <h1>{this.state.pageTitle}</h1>
 
+                <input type="text" onChange={this.handleInput}/>
+
                 <button
                     onClick={this.changeTitleHandler.bind(this, 'Changed!')}
-                >Change title</button>
+                >Change title
+                </button>
 
                 <Car
                     name={cars[0].name}
