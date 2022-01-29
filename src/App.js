@@ -87,7 +87,13 @@ class App extends Component {
                     Toggle Cars
                 </button>
 
-                {this._cars()}
+                <div style={{
+                    width: 400,
+                    margin: 'auto',
+                    paddingTop: '20px'
+                }}>
+                    {this._cars()}
+                </div>
             </div>
         );
     }
