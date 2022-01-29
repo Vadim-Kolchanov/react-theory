@@ -1,6 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
-import Car from './Car/Car';
+import Car from '../Car/Car';
 
 class App extends Component {
 
@@ -87,11 +87,7 @@ class App extends Component {
                     Toggle Cars
                 </button>
 
-                <div style={{
-                    width: 400,
-                    margin: 'auto',
-                    paddingTop: '20px'
-                }}>
+                <div className="Cars">
                     {this._cars()}
                 </div>
             </div>
