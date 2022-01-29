@@ -10,18 +10,40 @@ class App extends Component {
             {name: 'Audi', year: 2016},
             {name: 'Mazda', year: 2010}
         ],
-        pageTitle: 'Hello World, motherfuckers!'
+        pageTitle: 'Hello World, motherfuckers!',
+        showCars: false
     };
 
-    changeTitleHandler = (title) => this.setState({
+    toggleCarsHandler = () => this.setState({
+        showCars: !this.state.showCars
+    });
+
+    changeTitleHandler = title => this.setState({
         pageTitle: title
     });
 
-    handleInput = (event) => {
+    handleInput = event => {
         this.setState({
             pageTitle: event.target.value
         });
     };
+
+    _cars() {
+        if (!this.state.showCars) {
+            return null;
+        }
+
+        return this.state.cars.map((car, index) => {
+            return (
+                <Car
+                    key={index}
+                    name={car.name}
+                    year={car.year}
+                    onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                />
+            );
+        });
+    }
 
     render() {
         const divStyle = {
@@ -33,23 +55,13 @@ class App extends Component {
             <div className="App" style={divStyle}>
                 <h1>{this.state.pageTitle}</h1>
 
-                <input type="text" onChange={this.handleInput}/>
+                {/*<input type="text" onChange={this.handleInput}/>*/}
 
-                <button
-                    onClick={this.changeTitleHandler.bind(this, 'Changed!')}
-                >Change title
+                <button onClick={this.toggleCarsHandler}>
+                    Toggle Cars
                 </button>
 
-                { this.state.cars.map((car, index) => {
-                    return (
-                        <Car
-                            key={index}
-                            name={car.name}
-                            year={car.year}
-                            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
-                        />
-                    )
-                }) }
+                {this._cars()}
             </div>
         );
     }
