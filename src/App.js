@@ -18,14 +18,39 @@ class App extends Component {
         showCars: !this.state.showCars
     });
 
-    changeTitleHandler = title => this.setState({
-        pageTitle: title
-    });
+    onChangeName(name, index) {
+        /* Мой первый вариант
+        const cars = this.state.cars;
+        cars[index] = {name: name, year: cars[index].year};
+
+        this.setState({
+            cars
+        });
+         */
+
+        // Обязательно создавать клоны
+        const car = this.state.cars[index];
+        car.name = name;
+
+        const cars = [...this.state.cars];
+        cars[index] = car;
+
+        // Если ключ совпадает со значением, то можно не писать cars: cars
+        this.setState({cars});
+    }
 
     handleInput = event => {
         this.setState({
             pageTitle: event.target.value
         });
+    };
+
+    // При определении функции, как стрелочной, у неё не создается свой контекст this
+    onDelete = index => {
+        const cars = [...this.state.cars];
+        cars.splice(index, 1);
+
+        this.setState({cars});
     };
 
     _cars() {
@@ -39,7 +64,8 @@ class App extends Component {
                     key={index}
                     name={car.name}
                     year={car.year}
-                    onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+                    onChangeName={event => this.onChangeName(event.target.value, index)}
+                    onDelete={() => this.onDelete(index)}
                 />
             );
         });
