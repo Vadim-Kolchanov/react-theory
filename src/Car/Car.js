@@ -40,6 +40,11 @@ class Car extends React.Component {
         console.log('Car componentDidUpdate');
     }
 
+    // Вызывается, когда идет разрушение и он удаляется из ДОМ дерева
+    // Можно очистить память от всяких таймеров, подписок
+    componentWillUnmount() {
+        console.log('Car componentWillUnmount');
+    }
 
     render() {
         console.log('Car render');
