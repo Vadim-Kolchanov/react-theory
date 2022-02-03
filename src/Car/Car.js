@@ -33,11 +33,24 @@ class Car extends React.Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
+        //this.setState() - не безопасно!! Нельзя!!!
         console.log('Car componentWillUpdate', nextProps, nextState);
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('Car getDerivedStateFromProps', nextProps, prevState)
+
+        return prevState;
     }
 
     componentDidUpdate() {
         console.log('Car componentDidUpdate');
+    }
+
+    // Позволяет получить неизмененное ДОМ дерево (до обновления)
+    // Сохранить позицию скролла (к примеру)
+    getSnapshotBeforeUpdate() {
+        console.log('Car getSnapshotBeforeUpdate')
     }
 
     // Вызывается, когда идет разрушение и он удаляется из ДОМ дерева
