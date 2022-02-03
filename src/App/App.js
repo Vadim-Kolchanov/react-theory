@@ -4,6 +4,7 @@ import Car from '../Car/Car';
 
 class App extends Component {
 
+    // Вызывается первым
     constructor(props) {
         super(props);
 
@@ -75,7 +76,22 @@ class App extends Component {
         });
     }
 
+    // Жизненный цикл 1
+    // Когда произошел инит реакт компонента. Редко используется
+    // устаревший
+    componentWillMount() {
+        console.log('App componentWillMount')
+    }
+
+    // Жизненный цикл 3
+    // весь html реакта готов и мы можем его преобразовывать
+    componentDidMount() {
+        console.log('App componentDidMount')
+    }
+
+    // Жизненный цикл 2
     render() {
+        console.log('App render')
         const divStyle = {
             // 'text-align' не предпочтительно использовать. Лучше в стиле верблюда textAlign
             textAlign: 'center'
