@@ -4,15 +4,19 @@ import Car from '../Car/Car';
 
 class App extends Component {
 
-    state = {
-        cars: [
-            {name: 'BMW', year: 2019},
-            {name: 'Audi', year: 2016},
-            {name: 'Mazda', year: 2010}
-        ],
-        pageTitle: 'Hello World, motherfuckers!',
-        showCars: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            cars: [
+                {name: 'BMW', year: 2019},
+                {name: 'Audi', year: 2016},
+                {name: 'Mazda', year: 2010}
+            ],
+            pageTitle: 'Hello World, motherfuckers!',
+            showCars: false
+        };
+    }
 
     toggleCarsHandler = () => this.setState({
         showCars: !this.state.showCars
