@@ -1,5 +1,5 @@
 import React from "react";
-import Radium from 'radium';
+// import Radium from 'radium';
 import './Car.css';
 
 class Car extends React.Component {
@@ -20,7 +20,29 @@ class Car extends React.Component {
         return inputClasses.join(' ');
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('Car componentWillReceiveProps', nextProps);
+    }
+
+    // Если true, то компонент нужно перерисовать, если false то ничего не делаем
+    // True - если есть изменения в стейте
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('Car shouldComponentUpdate', nextProps, nextState);
+
+        return nextProps.name.trim() !== this.props.name.trim();
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('Car componentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log('Car componentDidUpdate');
+    }
+
+
     render() {
+        console.log('Car render');
         const style = {
             border: '1px solid #ccc',
             boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .14)',
@@ -45,7 +67,7 @@ class Car extends React.Component {
     }
 }
 
-export default Radium(Car);
+export default Car;
 
 //Вывод динамических данных
 // export default () => (
