@@ -37,11 +37,11 @@ class Car extends React.Component {
         console.log('Car componentWillUpdate', nextProps, nextState);
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('Car getDerivedStateFromProps', nextProps, prevState)
-
-        return prevState;
-    }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     console.log('Car getDerivedStateFromProps', nextProps, prevState)
+    //
+    //     return prevState;
+    // }
 
     componentDidUpdate() {
         console.log('Car componentDidUpdate');
@@ -49,9 +49,9 @@ class Car extends React.Component {
 
     // Позволяет получить неизмененное ДОМ дерево (до обновления)
     // Сохранить позицию скролла (к примеру)
-    getSnapshotBeforeUpdate() {
-        console.log('Car getSnapshotBeforeUpdate')
-    }
+    // getSnapshotBeforeUpdate() {
+    //     console.log('Car getSnapshotBeforeUpdate')
+    // }
 
     // Вызывается, когда идет разрушение и он удаляется из ДОМ дерева
     // Можно очистить память от всяких таймеров, подписок
@@ -61,6 +61,11 @@ class Car extends React.Component {
 
     render() {
         console.log('Car render');
+
+        if (Math.random() > 0.7) {
+            throw new Error('Car random failed');
+        }
+
         const style = {
             border: '1px solid #ccc',
             boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .14)',

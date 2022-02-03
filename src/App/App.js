@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from "react";
 import Car from '../Car/Car';
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
 
@@ -11,8 +12,8 @@ class App extends Component {
         this.state = {
             cars: [
                 {name: 'BMW', year: 2019},
-                // {name: 'Audi', year: 2016},
-                // {name: 'Mazda', year: 2010}
+                {name: 'Audi', year: 2016},
+                {name: 'Mazda', year: 2010}
             ],
             pageTitle: 'Hello World, motherfuckers!',
             showCars: false
@@ -65,13 +66,14 @@ class App extends Component {
 
         return this.state.cars.map((car, index) => {
             return (
-                <Car
-                    key={index}
-                    name={car.name}
-                    year={car.year}
-                    onChangeName={event => this.onChangeName(event.target.value, index)}
-                    onDelete={() => this.onDelete(index)}
-                />
+                <ErrorBoundary key={index}>
+                    <Car
+                        name={car.name}
+                        year={car.year}
+                        onChangeName={event => this.onChangeName(event.target.value, index)}
+                        onDelete={() => this.onDelete(index)}
+                    />
+                </ErrorBoundary>
             );
         });
     }
@@ -80,18 +82,18 @@ class App extends Component {
     // Когда произошел инит реакт компонента. Редко используется
     // устаревший
     componentWillMount() {
-        console.log('App componentWillMount')
+        console.log('App componentWillMount');
     }
 
     // Жизненный цикл 3
     // весь html реакта готов и мы можем его преобразовывать
     componentDidMount() {
-        console.log('App componentDidMount')
+        console.log('App componentDidMount');
     }
 
     // Жизненный цикл 2
     render() {
-        console.log('App render')
+        console.log('App render');
         const divStyle = {
             // 'text-align' не предпочтительно использовать. Лучше в стиле верблюда textAlign
             textAlign: 'center'
