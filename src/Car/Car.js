@@ -1,6 +1,6 @@
 import React from "react";
-// import Radium from 'radium';
 import './Car.css';
+import withClass from "../hoc/withClass";
 
 class Car extends React.Component {
 
@@ -20,6 +20,31 @@ class Car extends React.Component {
         return inputClasses.join(' ');
     }
 
+    render() {
+        console.log('Car render');
+
+        // if (Math.random() > 0.7) {
+        //     throw new Error('Car random failed');
+        // }
+
+        return (
+            <React.Fragment>
+                <h3>Car name: {this.props.name}</h3>
+                <p>Year: <strong>{this.props.year}</strong></p>
+                <input
+                    className={this.inputClassName()}
+                    type="text"
+                    onChange={this.props.onChangeName} value={this.props.name}
+                />
+                <button onClick={this.props.onDelete}>Delete</button>
+            </React.Fragment>
+        );
+    }
+}
+
+export default withClass(Car, "Car");
+
+/*
     componentWillReceiveProps(nextProps) {
         console.log('Car componentWillReceiveProps', nextProps);
     }
@@ -58,29 +83,7 @@ class Car extends React.Component {
     componentWillUnmount() {
         console.log('Car componentWillUnmount');
     }
-
-    render() {
-        console.log('Car render');
-
-        // if (Math.random() > 0.7) {
-        //     throw new Error('Car random failed');
-        // }
-
-        return (<div className="Car">
-                <h3>Car name: {this.props.name}</h3>
-                <p>Year: <strong>{this.props.year}</strong></p>
-                <input
-                    className={this.inputClassName()}
-                    type="text"
-                    onChange={this.props.onChangeName} value={this.props.name}
-                />
-                <button onClick={this.props.onDelete}>Delete</button>
-            </div>
-        );
-    }
-}
-
-export default Car;
+     */
 
 //Вывод динамических данных
 // export default () => (
