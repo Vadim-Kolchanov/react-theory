@@ -1,5 +1,6 @@
 import React from "react";
 import './Car.css';
+import PropTypes from 'prop-types';
 import withClass from "../hoc/withClass";
 
 class Car extends React.Component {
@@ -41,6 +42,15 @@ class Car extends React.Component {
         );
     }
 }
+
+// Возможны только для class
+Car.propTypes = {
+    // isRequired - должны 100% его получить
+    name: PropTypes.string.isRequired,
+    year: PropTypes.number,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
+};
 
 export default withClass(Car, "Car");
 
