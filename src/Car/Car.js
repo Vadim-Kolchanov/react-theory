@@ -5,6 +5,14 @@ import withClass from "../hoc/withClass";
 
 class Car extends React.Component {
 
+
+    // Референция с помощью реакта
+    constructor(props) {
+        super(props);
+
+        this.inputRef = React.createRef()
+    }
+
     inputClassName() {
         const inputClasses = ['input'];
 
@@ -21,6 +29,16 @@ class Car extends React.Component {
         return inputClasses.join(' ');
     }
 
+    // весь html реакта готов и мы можем его преобразовывать
+    componentDidMount() {
+        if (this.props.index !== 1) {
+            return;
+        }
+
+        //this.inputRef.focus();
+        this.inputRef.current.focus();
+    }
+
     render() {
         console.log('Car render');
 
@@ -33,6 +51,8 @@ class Car extends React.Component {
                 <h3>Car name: {this.props.name}</h3>
                 <p>Year: <strong>{this.props.year}</strong></p>
                 <input
+                    ref={this.inputRef}
+                    //ref={(inputRef) => this.inputRef = inputRef}
                     className={this.inputClassName()}
                     type="text"
                     onChange={this.props.onChangeName} value={this.props.name}
@@ -48,6 +68,7 @@ Car.propTypes = {
     // isRequired - должны 100% его получить
     name: PropTypes.string.isRequired,
     year: PropTypes.number,
+    index: PropTypes.number,
     onChangeName: PropTypes.func,
     onDelete: PropTypes.func
 };

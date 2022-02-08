@@ -71,6 +71,7 @@ class App extends Component {
                     <Car
                         name={car.name}
                         year={car.year}
+                        index={index}
                         onChangeName={event => this.onChangeName(event.target.value, index)}
                         onDelete={() => this.onDelete(index)}
                     />
