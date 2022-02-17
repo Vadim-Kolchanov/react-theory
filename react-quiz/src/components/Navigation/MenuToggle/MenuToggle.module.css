@@ -6,7 +6,7 @@
     cursor: pointer;
     color: #fff;
     transition: opacity, left .22s ease-in;
-    z-index: 2;
+    z-index: 3;
 }
 
 .MenuToggle:hover {
