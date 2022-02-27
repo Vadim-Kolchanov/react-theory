@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.scss';
 import About from './About/About';
 import Cars from './Cars/Cars';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, NavLink} from 'react-router-dom';
 
 class App extends Component {
     render() {
@@ -12,13 +12,14 @@ class App extends Component {
                 <nav className="nav">
                     <ul>
                         <li>
-                            <a href="/">Home</a>
+                            {/*Позволяет не перезагружать страницу*/}
+                            <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <a href="/about">About</a>
+                            <NavLink to="/about">About</NavLink>
                         </li>
                         <li>
-                            <a href="/cars">Cars</a>
+                            <NavLink to="/cars">Cars</NavLink>
                         </li>
                     </ul>
                 </nav>
