@@ -17,6 +17,9 @@ class App extends Component {
                         <li>
                             <a href="/about">About</a>
                         </li>
+                        <li>
+                            <a href="/cars">Cars</a>
+                        </li>
                     </ul>
                 </nav>
 
@@ -28,11 +31,15 @@ class App extends Component {
                         path="/"
                         element={<h1>Home Page</h1>}
                     />
+                    <Route
+                        path="/about"
+                        element={<About/>}
+                    />
+                    <Route
+                        path="/cars"
+                        element={<Cars/>}
+                    />
                 </Routes>
-
-                <About/>
-
-                <Cars/>
             </div>
         );
     }
