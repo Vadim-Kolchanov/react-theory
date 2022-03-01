@@ -18,6 +18,7 @@ class QuizList extends Component {
 
     render() {
         return (
+            //TODO разобраться почему названия не друг под другом
             <div className={classes.QuizList}>
                 <h1>Список тестов</h1>
 
