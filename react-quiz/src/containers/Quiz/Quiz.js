@@ -3,6 +3,7 @@ import classes from './Quiz.module.css';
 import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 import AnswerState from "./enums/answer-state";
+import withRouter from "../../hoc/WrappedComponent/WrappedComponent";
 
 class Quiz extends Component {
     state = {
@@ -49,7 +50,7 @@ class Quiz extends Component {
 
         if (question.rightAnswerId === answerId) {
             if (!results[question.id]) {
-                results[question.id] = AnswerState.SUCCESS
+                results[question.id] = AnswerState.SUCCESS;
             }
 
             this.setState({
@@ -70,7 +71,7 @@ class Quiz extends Component {
             }, 1000);
 
         } else {
-            results[question.id] = AnswerState.ERROR
+            results[question.id] = AnswerState.ERROR;
             this.setState({
                 answerState: {[answerId]: AnswerState.ERROR},
                 results
@@ -85,8 +86,8 @@ class Quiz extends Component {
             answerState: null,
             isFinished: false,
             results: {}
-        })
-    }
+        });
+    };
 
     nextQuestion() {
         this.setState(prevState => {
@@ -95,6 +96,10 @@ class Quiz extends Component {
                 answerState: null
             };
         });
+    }
+
+    componentDidMount() {
+        console.log('Quiz ID = ', this.props.params.id);
     }
 
     render() {
@@ -130,4 +135,4 @@ class Quiz extends Component {
     }
 }
 
-export default Quiz;
+export default withRouter(Quiz);
