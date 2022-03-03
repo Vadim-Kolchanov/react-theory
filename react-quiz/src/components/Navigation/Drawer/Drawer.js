@@ -18,8 +18,9 @@ class Drawer extends Component {
     renderLinks() {
         return links.map((link, index) => {
             return (
-                <li key={{index}}>
+                <li key={index}>
                     <NavLink
+                        key={link.to + index}
                         to={link.to}
                         className={({isActive}) => isActive ? classes.active : ''}
                         onClick={this.clickHandler}
