@@ -42,11 +42,42 @@ class QuizCreator extends Component {
     };
 
     addQuestionHandler = event => {
-        event.preventDefault()
+        event.preventDefault();
+
+        // Копию массива - защита от мутации
+        const quiz = this.state.quiz.concat();
+        const index = quiz.length + 1;
+
+        // Деструкторизация массива
+        const {question, option1, option2, option3, option4} = this.state.formControls;
+
+        const questionItem = {
+            question: question.value,
+            id: index,
+            rightAnswerId: this.state.rightAnswerId,
+            answers: [
+                {text: option1.value, id: option1.id},
+                {text: option2.value, id: option2.id},
+                {text: option3.value, id: option3.id},
+                {text: option4.value, id: option4.id}
+            ]
+        };
+
+        quiz.push(questionItem);
+
+        this.setState({
+            quiz,
+            formControls: createFormControls(),
+            rightAnswerId: 1,
+            isFormValid: false
+        });
     };
 
-    createQuizHandler = () => {
+    createQuizHandler = event => {
+        event.preventDefault()
 
+        console.log(this.state.quiz)
+        // todo: Server
     };
 
     // При изменение стейта создаем клоны
@@ -56,7 +87,7 @@ class QuizCreator extends Component {
 
         control.touched = true;
         control.value = value;
-        control.valid = validate(control.value, control.validation)
+        control.valid = validate(control.value, control.validation);
 
         formControls[controlName] = control;
 
@@ -132,7 +163,7 @@ class QuizCreator extends Component {
                             onClick={this.createQuizHandler}
                             disabled={this.state.quiz.length === 0}
                         >
-                            Создать текст
+                            Создать тест
                         </Button>
                     </form>
 
