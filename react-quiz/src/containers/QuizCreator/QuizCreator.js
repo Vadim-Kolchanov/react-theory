@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import classes from './QuizCreator.module.css';
 import Button from "../../components/UI/Button/Button";
 import ButtonType from "../../components/UI/Button/button-type";
-import {createControl} from "../../form/formFramework";
+import {createControl, validate, validateForm} from "../../form/formFramework";
 import Input from "../../components/UI/Input/Input";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Select from "../../components/UI/Select/Select";
@@ -33,29 +33,37 @@ class QuizCreator extends Component {
     state = {
         quiz: [],
         formControls: createFormControls(),
-        rightAnswerId: 1
+        rightAnswerId: 1,
+        isFormValid: false
     };
 
     submitHandler = event => {
         event.preventDefault();
     };
 
-    addQuestionHandler = () => {
-
+    addQuestionHandler = event => {
+        event.preventDefault()
     };
 
     createQuizHandler = () => {
 
     };
 
+    // При изменение стейта создаем клоны
     changeHandler = (value, controlName) => {
-        const formControls = this.state.formControls;
-        const control = formControls[controlName];
+        const formControls = {...this.state.formControls};
+        const control = {...formControls[controlName]};
+
+        control.touched = true;
         control.value = value;
+        control.valid = validate(control.value, control.validation)
 
         formControls[controlName] = control;
 
-        this.setState(formControls);
+        this.setState({
+            formControls,
+            isFormValid: validateForm(formControls)
+        });
     };
 
     renderControls() {
@@ -114,6 +122,7 @@ class QuizCreator extends Component {
                         <Button
                             type={ButtonType.PRIMARY}
                             onClick={this.addQuestionHandler}
+                            disabled={!this.state.isFormValid}
                         >
                             Добавить вопрос
                         </Button>
@@ -121,6 +130,7 @@ class QuizCreator extends Component {
                         <Button
                             type={ButtonType.SUCCESS}
                             onClick={this.createQuizHandler}
+                            disabled={this.state.quiz.length === 0}
                         >
                             Создать текст
                         </Button>
