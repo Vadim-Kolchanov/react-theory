@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './QuizList.module.css';
 import {NavLink} from "react-router-dom";
-import axios from 'axios';
+import axios from '../../axios/axios-quiz';
 import Loader from "../../components/UI/Loader/Loader";
 
 class QuizList extends Component {
@@ -28,7 +28,7 @@ class QuizList extends Component {
         const quizes = [];
 
         try {
-            const response = await axios.get('https://react-quiz-c7732-default-rtdb.europe-west1.firebasedatabase.app/quizes.json');
+            const response = await axios.get('/quizes.json');
 
             Object.keys(response.data).forEach((key, index) => {
                 quizes.push({

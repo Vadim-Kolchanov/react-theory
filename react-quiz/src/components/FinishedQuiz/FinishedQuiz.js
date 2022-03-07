@@ -3,7 +3,7 @@ import classes from './FinishedQuiz.module.css';
 import AnswerState from "../../containers/Quiz/enums/answer-state";
 import Button from "../UI/Button/Button";
 import {Link} from 'react-router-dom';
-import ButtonType from "../UI/Button/button-type";
+import ButtonType from "../UI/Button/enums/button-type";
 
 const FinishedQuiz = props => {
     const successCount = Object.keys(props.results).reduce((total, key) => {
@@ -33,7 +33,7 @@ const FinishedQuiz = props => {
 
                         >
                             <strong>{index + 1}</strong>.&nbsp;
-                            {quizItem.questions}
+                            {quizItem.question}
                             <i className={cls.join(' ')}/>
                         </li>
                     );
