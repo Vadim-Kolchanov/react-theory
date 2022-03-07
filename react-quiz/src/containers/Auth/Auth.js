@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './Auth.module.css';
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
+import ButtonType from "../../components/UI/Button/button-type";
 
 function validateEmail(email) {
     return String(email)
@@ -127,13 +128,13 @@ class Auth extends Component {
                         {this.renderInputs()}
 
                         <Button
-                            type="success"
+                            type={ButtonType.SUCCESS}
                             onClick={this.loginHandler}
                             disabled={!this.state.isFormValid}
                         >Войти</Button>
 
                         <Button
-                            type="primary"
+                            type={ButtonType.PRIMARY}
                             onClick={this.registerHandler}
                             disabled={!this.state.isFormValid}
                         >Зарегистрироваться</Button>
