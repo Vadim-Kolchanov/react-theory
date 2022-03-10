@@ -3,6 +3,7 @@ import classes from './Auth.module.css';
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import ButtonType from "../../components/UI/Button/enums/button-type";
+import axios from 'axios';
 
 function validateEmail(email) {
     return String(email)
@@ -44,13 +45,37 @@ class Auth extends Component {
         }
     };
 
-    loginHandler = () => {
+    registerHandler = async event => {
+        event.preventDefault()
 
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBH0oMVOpD-A0YxFJPBuOryKineNEncUqY', this.authData());
+            console.log(response.data);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
-    registerHandler = () => {
+    loginHandler = async event => {
+        event.preventDefault()
 
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBH0oMVOpD-A0YxFJPBuOryKineNEncUqY', this.authData());
+            console.log(response.data);
+        } catch (e) {
+            console.log(e);
+        }
     };
+
+    authData() {
+        const {email, password} = this.state.formControls;
+
+        return {
+            email: email.value,
+            password: password.value,
+            returnSecureToken: true
+        };
+    }
 
     submitHandler = () => {
 
@@ -90,8 +115,8 @@ class Auth extends Component {
 
         let isFormValid = true;
         Object.keys(formControls).forEach(name => {
-            isFormValid = formControls[name].valid && isFormValid
-        })
+            isFormValid = formControls[name].valid && isFormValid;
+        });
 
         this.setState({
             formControls, isFormValid
