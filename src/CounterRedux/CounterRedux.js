@@ -18,7 +18,6 @@ class CounterRedux extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         counterRedux: state.counterRedux.counterRedux
     }
