@@ -1,4 +1,4 @@
-import ActionType from "../action-type";
+import ActionType from "../actions/action-type";
 
 const initialState = {
     counterRedux: 200

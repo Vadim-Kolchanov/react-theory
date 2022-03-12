@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import classes from './CounterRedux.module.css'
 import {connect} from "react-redux";
-import ActionType from "../redux/action-type";
+import ActionType from "../redux/actions/action-type";
+import {addNumberRedux} from "../redux/actions/actions";
 
 class CounterRedux extends Component {
     render() {
@@ -25,7 +26,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onChange: number => dispatch({type: ActionType.ADD_NUMBER_REDUX, payload: number})
+        onChange: number => dispatch(addNumberRedux(number))
     }
 }
 

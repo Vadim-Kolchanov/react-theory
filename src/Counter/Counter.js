@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import Auxiliary from "../hoc/Auxiliary";
 import Counter2 from "../Counter2/Counter2";
-import {connect} from 'react-redux'
-import ActionType from "../redux/action-type";
+import {connect} from 'react-redux';
 import CounterRedux from "../CounterRedux/CounterRedux";
+import {add, addNumber, sub} from "../redux/actions/actions";
 
 class Counter extends Component {
     // addCounter = () => {
@@ -71,9 +71,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onAdd: () => dispatch({type: ActionType.ADD}),
-        onSub: () => dispatch({type: ActionType.SUB}),
-        onAddNumber: number => dispatch({type: ActionType.ADD_NUMBER, payload: number}),
+        onAdd: () => dispatch(add()),
+        onSub: () => dispatch(sub()),
+        onAddNumber: number => dispatch(addNumber(number)),
 
     }
 }
