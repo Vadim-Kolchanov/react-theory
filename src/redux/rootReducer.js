@@ -10,13 +10,14 @@ export default function rootReducer(state = initialState, action) {
         case ActionType.ADD: return {
             counter: state.counter + 1
         }
-        case ActionType.ADD_NUMBER: return {
-            counter: state.counter + action.value
-        }
         case ActionType.SUB: return {
             counter: state.counter - 1
         }
-    }
+        case ActionType.ADD_NUMBER: return {
+            counter: state.counter + action.payload
+        }
 
-    return state;
+        default:
+            return state
+    }
 }

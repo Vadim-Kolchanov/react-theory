@@ -48,8 +48,13 @@ class Counter extends Component {
                 <h2>Counter {this.props.counter}</h2>
                 <Counter2 />
                 <button onClick={this.props.onAdd}>+</button>
-                <button onClick={this.props.onAddNumber}>+ 10</button>
                 <button onClick={this.props.onSub}>-</button>
+
+                <hr/>
+                {/*Используем колбэк функцию. Можно через bind(this, ..props)*/}
+                <button onClick={() => this.props.onAddNumber(15)}>+</button>
+                <button onClick={() => this.props.onAddNumber(-15)}>-</button>
+
             </Auxiliary>
         )
     }
@@ -64,8 +69,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onAdd: () => dispatch({type: ActionType.ADD}),
-        onAddNumber: () => dispatch({type: ActionType.ADD_NUMBER, value: 10}),
-        onSub: () => dispatch({type: ActionType.SUB})
+        onSub: () => dispatch({type: ActionType.SUB}),
+        onAddNumber: number => dispatch({type: ActionType.ADD_NUMBER, payload: number}),
+
     }
 }
 
