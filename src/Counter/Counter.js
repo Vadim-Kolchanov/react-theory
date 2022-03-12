@@ -3,7 +3,7 @@ import Auxiliary from "../hoc/Auxiliary";
 import Counter2 from "../Counter2/Counter2";
 import {connect} from 'react-redux';
 import CounterRedux from "../CounterRedux/CounterRedux";
-import {add, addNumber, sub} from "../redux/actions/actions";
+import {add, addNumber, asyncAdd, sub} from "../redux/actions/actions";
 
 class Counter extends Component {
     // addCounter = () => {
@@ -57,6 +57,10 @@ class Counter extends Component {
                 <button onClick={() => this.props.onAddNumber(-15)}>-</button>
                 <hr/>
 
+                <button onClick={() => this.props.onAsyncAdd(100)}>Асинхронно добавить 100</button>
+
+                <hr/>
+
                 <CounterRedux/>
             </Auxiliary>
         )
@@ -74,6 +78,7 @@ function mapDispatchToProps(dispatch) {
         onAdd: () => dispatch(add()),
         onSub: () => dispatch(sub()),
         onAddNumber: number => dispatch(addNumber(number)),
+        onAsyncAdd: number => dispatch(asyncAdd(number)),
 
     }
 }
