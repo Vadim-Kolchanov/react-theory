@@ -1,23 +1,10 @@
-import ActionType from "./action-type";
+import {combineReducers} from 'redux';
 
-const initialState = {
-    counter: 0
-}
+import counter1 from "./reducers/counter1";
+import counterRedux from "./reducers/counter-redux";
 
-export default function rootReducer(state = initialState, action) {
-
-    switch (action.type) {
-        case ActionType.ADD: return {
-            counter: state.counter + 1
-        }
-        case ActionType.SUB: return {
-            counter: state.counter - 1
-        }
-        case ActionType.ADD_NUMBER: return {
-            counter: state.counter + action.payload
-        }
-
-        default:
-            return state
-    }
-}
+// Объединяем редьюсеры
+export default combineReducers({
+    counter1,
+    counterRedux
+});

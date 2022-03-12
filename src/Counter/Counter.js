@@ -3,6 +3,7 @@ import Auxiliary from "../hoc/Auxiliary";
 import Counter2 from "../Counter2/Counter2";
 import {connect} from 'react-redux'
 import ActionType from "../redux/action-type";
+import CounterRedux from "../CounterRedux/CounterRedux";
 
 class Counter extends Component {
     // addCounter = () => {
@@ -54,7 +55,9 @@ class Counter extends Component {
                 {/*Используем колбэк функцию. Можно через bind(this, ..props)*/}
                 <button onClick={() => this.props.onAddNumber(15)}>+</button>
                 <button onClick={() => this.props.onAddNumber(-15)}>-</button>
+                <hr/>
 
+                <CounterRedux/>
             </Auxiliary>
         )
     }
@@ -62,7 +65,7 @@ class Counter extends Component {
 
 function mapStateToProps(state) {
     return {
-        counter: state.counter
+        counter: state.counter1.counter
     }
 }
 
