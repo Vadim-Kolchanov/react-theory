@@ -32,6 +32,31 @@ export default function quizReducer(state = initialState, action) {
             }
         }
 
+        case ActionTypes.QUIZ_SET_STATE: {
+            return {
+                ...state, answerState: action.answerState, results: action.results
+            }
+        }
+        case ActionTypes.FINISH_QUIZ: {
+            return {
+                ...state, isFinished: true
+            }
+        }
+        case ActionTypes.QUIZ_NEXT_QUESTION: {
+            return {
+                ...state, answerState: null, activeQuestion: action.number
+            }
+        }
+        case ActionTypes.QUIZ_RETRY: {
+            return {
+                ...state,
+                activeQuestion: 0,
+                answerState: null,
+                isFinished: false,
+                results: {}
+            }
+        }
+
         default:
             return state
     }
