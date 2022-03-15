@@ -8,6 +8,9 @@ const ActionTypes = {
     FINISH_QUIZ: 'FINISH_QUIZ',
     QUIZ_NEXT_QUESTION: 'QUIZ_NEXT_QUESTION',
     QUIZ_RETRY: 'QUIZ_RETRY',
+
+    CREATE_QUIZ_QUESTION: 'CREATE_QUIZ_QUESTION',
+    RESET_QUIZ_CREATION: 'RESET_QUIZ_CREATION'
 };
 
 export default Object.freeze(ActionTypes);
