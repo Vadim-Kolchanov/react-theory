@@ -21,7 +21,7 @@ export function authError(error) {
     };
 }
 
-function logout() {
+export function logout() {
     localStorage.removeItem(localStorageName.TOKEN)
     localStorage.removeItem(localStorageName.USER_ID)
     localStorage.removeItem(localStorageName.EXPIRATION_DATE)
@@ -29,6 +29,10 @@ function logout() {
     return {
         type: ActionTypes.AUTH_LOGOUT
     };
+}
+
+export function autoLogin() {
+
 }
 
 export function authLogout(time) {
