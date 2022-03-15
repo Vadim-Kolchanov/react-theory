@@ -32,7 +32,20 @@ export function logout() {
 }
 
 export function autoLogin() {
-
+    return dispatch => {
+        const token = localStorage.getItem(localStorageName.TOKEN)
+        if (!token) {
+            dispatch(logout())
+        } else {
+            const expirationDate = new Date(localStorage.getItem(localStorageName.EXPIRATION_DATE))
+            if (expirationDate <= new Date()) {
+                dispatch(logout())
+            } else {
+                dispatch(authSuccess(token))
+                dispatch(authLogout((expirationDate.getTime() - new Date().getTime()) / 1000))
+            }
+        }
+    }
 }
 
 export function authLogout(time) {

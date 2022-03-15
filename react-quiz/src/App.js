@@ -7,6 +7,7 @@ import QuizList from "./containers/QuizList/QuizList";
 import Auth from "./containers/Auth/Auth";
 import {connect} from "react-redux";
 import Logout from "./components/Logout/Logout";
+import {autoLogin} from "./store/actions/auth";
 
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.authLogin()
+        this.props.autoLogin()
     }
 
     render() {
@@ -51,8 +52,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        authLogin: () => dispatch(autoLogin())
+        autoLogin: () => dispatch(autoLogin())
     }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
