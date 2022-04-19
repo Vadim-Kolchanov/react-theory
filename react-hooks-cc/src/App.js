@@ -1,11 +1,16 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
+import Main from "./Main";
+import Alert from "./Alert/Alert";
+import {AlertProvider} from "./Alert/AlertContext";
 
 function App() {
-
     return (
-        <div>
-            <h1></h1>
-        </div>
+        <AlertProvider>
+            <div className={'container pt-3'}>
+                <Alert />
+                <Main />
+            </div>
+        </AlertProvider>
     );
 }
 
