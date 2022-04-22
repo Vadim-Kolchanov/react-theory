@@ -6,9 +6,12 @@ import {About} from "./pages/About";
 import {Profile} from "./pages/Profile";
 import {Alert} from "./components/Alert";
 import {AlertState} from "./context/alert/AlertState";
+import {GithubContext} from "./context/github/GithubContext";
+import {GithubState} from "./context/github/GithubState";
 
 function App() {
     return (
+        <GithubState>
         <AlertState>
             <BrowserRouter>
                 <Navbar/>
@@ -24,6 +27,7 @@ function App() {
                 </div>
             </BrowserRouter>
         </AlertState>
+        </GithubState>
     );
 }
 
