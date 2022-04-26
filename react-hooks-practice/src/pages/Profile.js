@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, Fragment} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {GithubContext} from "../context/github/GithubContext";
+import {Repos} from "../components/Repos";
 
 export const Profile = () => {
     const {getUser, getRepos, loading, user, repos} = useContext(GithubContext)
@@ -79,7 +80,7 @@ export const Profile = () => {
                 </div>
             </div>
 
-            {repos.join('')}
+            <Repos repos={repos} />
         </Fragment>
     )
 };
