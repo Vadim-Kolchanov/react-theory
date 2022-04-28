@@ -1,12 +1,30 @@
 import {useState} from "react";
 import {CSSTransition, Transition} from 'react-transition-group';
+import {List} from "./List";
 
 function App() {
     const [toggle, setToggle] = useState(true);
     const [toggle2, setToggle2] = useState(true);
+    const [items, setItems] = useState([
+        {id: 1, title: 'Item 1'},
+        {id: 2, title: 'Item 2'},
+        {id: 3, title: 'Item 3'},
+    ]);
+
+    const removeItem = id => setItems(prev =>
+        prev.filter(i => i.id !== id)
+    );
+
+    const addItem = () => {
+        const title = prompt('Enter item title')
+        const id = Date.now()
+
+        setItems(prev => prev.concat([{title, id}]))
+    }
+
 
     /*
-    Нужный, чтобы компонент исчезал из ДОМ-дерева
+    Нужны, чтобы компонент исчезал из ДОМ-дерева
     mountOnEnter
     unmountOnExit
      */
@@ -20,6 +38,10 @@ function App() {
             <button
                 onClick={() => setToggle2(!toggle2)}
             >Toggle2
+            </button>
+            <button
+                onClick={addItem}
+            >addItem
             </button>
             <hr/>
             <div className="blocks">
@@ -52,6 +74,9 @@ function App() {
                         {toggle2.toString()}
                     </div>
                 </CSSTransition>
+            </div>
+            <div className="blocks">
+                <List items={items} onRemove={removeItem}/>
             </div>
         </div>
     );
